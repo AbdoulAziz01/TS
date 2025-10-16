@@ -43,6 +43,8 @@ body.nav-open{overflow:hidden}
 .hero h1{font-size:42px; line-height:1.1; margin:0 0 12px}
 .hero p{color:var(--muted); margin:0 0 18px}
 .actions{display:flex; gap:12px; margin:20px 0 10px}
+.hero-figure{margin:0}
+.hero-image{width:100%; height:auto; border-radius:14px; box-shadow:var(--shadow); object-fit:cover}
 .badges{display:flex; gap:8px; margin-top:8px}
 .badge{background:#F1F5F9; padding:6px 10px; border-radius:999px; font-size:12px}
 .badge-yellow{background:rgba(249,198,35,.18); color:#8B6400}

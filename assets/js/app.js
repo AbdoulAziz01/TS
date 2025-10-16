@@ -24,6 +24,17 @@
     }));
   }
 
+  // Route guards: require login for protected pages
+  (function guards(){
+    const currentUser = localStorage.getItem('currentUser');
+    const page = location.pathname.split('/').pop().toLowerCase();
+    const protectedPages = ['profile.html','dashboard.html','messages.html'];
+    if (!currentUser && protectedPages.includes(page)){
+      location.replace('auth.html');
+      return;
+    }
+  })();
+
   // Smooth reveal with IntersectionObserver
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
@@ -295,6 +306,11 @@
               <span class="nav-username">${displayName}</span>
             </a>`;
         }
+      } else {
+        // Not logged in: hide links to protected pages
+        navList.querySelectorAll('a[href$="profile.html"], a[href$="dashboard.html"], a[href$="messages.html"]').forEach(a=>{
+          a.closest('li')?.remove();
+        });
       }
     }
     // Hero actions tweak
