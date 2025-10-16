@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion – Talent Sénégal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+</head>
+<body class="page-auth">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="Talent Sénégal" class="logo"/>
+        <span>Talent Sénégal</span>
+      </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="offers.html">Offres</a></li>
+          <li><a href="profile.html">Profil</a></li>
+          <li><a href="dashboard.html">Tableau de bord</a></li>
+          <li><a href="messages.html">Messages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth">
+    <div class="container auth-grid">
+      <section class="auth-intro">
+        <h1>Connectez-vous</h1>
+        <p>Sélectionnez votre type de compte et accédez à votre espace.</p>
+        <div class="role-switch">
+          <label><input type="radio" name="role" value="etudiant" checked> Étudiant</label>
+          <label><input type="radio" name="role" value="entreprise"> Entreprise</label>
+          <label><input type="radio" name="role" value="coach"> Coach</label>
+          <label><input type="radio" name="role" value="ong"> ONG</label>
+        </div>
+      </section>
+
+      <section class="auth-forms">
+        <form id="loginForm" class="form active" novalidate>
+          <div class="field">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" required placeholder="vous@exemple.com" />
+            <small class="error-msg"></small>
+          </div>
+          <div class="field">
+            <label for="loginPassword">Mot de passe</label>
+            <input type="password" id="loginPassword" required minlength="6" placeholder="••••••••" />
+            <small class="error-msg"></small>
+          </div>
+          <button type="submit" class="btn btn-primary full">Se connecter</button>
+          <p class="muted">Pas de compte ? <a href="auth.html">Créer un compte</a></p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span id="year"></span> Talent Sénégal</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

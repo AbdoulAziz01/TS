@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offres – Talent Sénégal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="Talent Sénégal" class="logo"/>
+        <span>Talent Sénégal</span>
+      </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a class="active" href="offers.html">Offres</a></li>
+          <li><a href="media.html">Médiathèque</a></li>
+          <li><a href="profile.html">Profil</a></li>
+          <li><a href="dashboard.html">Tableau de bord</a></li>
+          <li><a href="messages.html">Messages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="offers container">
+    <h1>Découvrir les offres</h1>
+    <form id="filters" class="filters" autocomplete="off">
+      <input type="text" name="q" placeholder="Recherche (titre, mots-clés)" />
+      <select name="skill">
+        <option value="">Compétence</option>
+        <option>React</option>
+        <option>Python</option>
+        <option>Marketing</option>
+        <option>Gestion de projet</option>
+      </select>
+      <select name="sector">
+        <option value="">Secteur</option>
+        <option>Technologie</option>
+        <option>Finance</option>
+        <option>ONG</option>
+        <option>Education</option>
+      </select>
+      <select name="location">
+        <option value="">Localisation</option>
+        <option>Dakar</option>
+        <option>Thiès</option>
+        <option>Saint-Louis</option>
+      </select>
+      <button type="reset" class="btn btn-ghost">Réinitialiser</button>
+    </form>
+
+    <ul id="offerList" class="offer-cards">
+      <li class="offer-card" data-skill="React" data-sector="Technologie" data-location="Dakar">
+        <div class="card-top">
+          <h3>Développeur Front-end</h3>
+          <span class="tag">Stage</span>
+        </div>
+        <p>Start-up SaaS • React, JS • Dakar</p>
+        <div class="meta">
+          <span>Technologie</span>
+          <span>React</span>
+          <span>Dakar</span>
+        </div>
+        <a class="btn btn-primary" href="#">Postuler</a>
+      </li>
+      <li class="offer-card" data-skill="Python" data-sector="Finance" data-location="Dakar">
+        <div class="card-top">
+          <h3>Data Analyst Junior</h3>
+          <span class="tag yellow">CDI</span>
+        </div>
+        <p>Banque • SQL, Python • Dakar</p>
+        <div class="meta">
+          <span>Finance</span>
+          <span>Python</span>
+          <span>Dakar</span>
+        </div>
+        <a class="btn btn-primary" href="#">Postuler</a>
+      </li>
+      <li class="offer-card" data-skill="Marketing" data-sector="ONG" data-location="Thiès">
+        <div class="card-top">
+          <h3>Chargé·e de Communication</h3>
+          <span class="tag red">Mission</span>
+        </div>
+        <p>ONG Santé • Communication digitale • Thiès</p>
+        <div class="meta">
+          <span>ONG</span>
+          <span>Marketing</span>
+          <span>Thiès</span>
+        </div>
+        <a class="btn btn-primary" href="#">Postuler</a>
+      </li>
+      <li class="offer-card" data-skill="Gestion de projet" data-sector="Education" data-location="Saint-Louis">
+        <div class="card-top">
+          <h3>Assistant·e Chef de Projet</h3>
+          <span class="tag">Stage</span>
+        </div>
+        <p>EdTech • Coordination • Saint-Louis</p>
+        <div class="meta">
+          <span>Education</span>
+          <span>Gestion de projet</span>
+          <span>Saint-Louis</span>
+        </div>
+        <a class="btn btn-primary" href="#">Postuler</a>
+      </li>
+    </ul>
+    <div id="pagination" class="panel" style="margin-top:12px; display:flex; align-items:center; justify-content:center; gap:10px">
+      <button name="prev" class="btn btn-ghost" aria-label="Page précédente">Précédent</button>
+      <span class="page-info">1 / 1</span>
+      <button name="next" class="btn btn-ghost" aria-label="Page suivante">Suivant</button>
+    </div>
+  </main>
+
+  <!-- Applicants modal (offers page) -->
+  <div id="offersApplicantsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="offersApplicantsTitle" style="display:none">
+    <div class="modal-card" style="max-width:720px">
+      <div class="modal-head">
+        <h3 id="offersApplicantsTitle">Candidats</h3>
+        <button class="modal-close" data-close aria-label="Fermer"><svg class="icon"><use href="assets/img/icons.svg#icon-close"/></svg></button>
+      </div>
+      <ul id="offersApplicantsList" class="offer-list" style="margin-top:8px"></ul>
+    </div>
+  </div>
+
+  <!-- Application Modal (Motivation letter) -->
+  <div id="applyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="applyTitle" style="display:none">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="applyTitle">Postuler</h3>
+        <button class="modal-close" data-close aria-label="Fermer">
+          <svg class="icon"><use href="assets/img/icons.svg#icon-close"/></svg>
+        </button>
+      </div>
+      <form id="applyForm">
+        <input type="hidden" id="applyOfferTitle" />
+        <div class="field">
+          <label for="motivationText">Lettre de motivation</label>
+          <textarea id="motivationText" rows="5" placeholder="Expliquez pourquoi vous êtes motivé(e) par cette opportunité..." required style="width:100%; padding:10px; border:1px solid var(--line); border-radius:10px"></textarea>
+        </div>
+        <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:10px">
+          <button type="button" class="btn btn-ghost" data-close>Annuler</button>
+          <button type="submit" class="btn btn-primary">Envoyer la candidature</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span id="year"></span> Talent Sénégal</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Médiathèque • Talent Sénégal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2E7D32"/><path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Talent Sénégal</span>
+      </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="offers.html">Offres</a></li>
+          <li><a class="active" href="media.html">Médiathèque</a></li>
+          <li><a href="profile.html">Profil</a></li>
+          <li><a href="dashboard.html">Tableau de bord</a></li>
+          <li><a href="messages.html">Messages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding:20px 0">
+    <h1>Médiathèque</h1>
+    <p class="muted">Vidéos, masterclasses et e-books pour booster vos compétences.</p>
+
+    <form id="mediaFilters" class="filters" style="margin-top:12px">
+      <input type="text" name="q" placeholder="Rechercher un contenu (titre, auteur, tags)" />
+      <select name="type">
+        <option value="">Tous les types</option>
+        <option value="video">Vidéos</option>
+        <option value="masterclass">Masterclasses</option>
+        <option value="ebook">E-books</option>
+      </select>
+      <button type="reset" class="btn btn-ghost">Réinitialiser</button>
+    </form>
+
+    <ul id="mediaList" class="media-grid" style="margin-top:12px">
+      <!-- Sample items -->
+      <li class="media-card" data-type="video" data-tags="cv,entretien" data-author="Coach Awa" data-title="Préparer un entretien" data-src="https://www.youtube.com/embed/dQw4w9WgXcQ">
+        <div class="media-thumb video"></div>
+        <div class="media-info">
+          <h3>Préparer un entretien</h3>
+          <p class="muted">Coach Awa • Vidéo • 12 min</p>
+        </div>
+        <button class="btn btn-primary">Regarder</button>
+      </li>
+      <li class="media-card" data-type="masterclass" data-tags="linkedin,profil" data-author="HR – Finabank" data-title="Optimiser son profil LinkedIn" data-src="https://www.youtube.com/embed/dQw4w9WgXcQ">
+        <div class="media-thumb masterclass"></div>
+        <div class="media-info">
+          <h3>Optimiser son profil LinkedIn</h3>
+          <p class="muted">HR – Finabank • Masterclass • 45 min</p>
+        </div>
+        <button class="btn btn-primary">Regarder</button>
+      </li>
+      <li class="media-card" data-type="ebook" data-tags="cv,modèles" data-author="Talent Sénégal" data-title="Modèles de CV (PDF)" data-file="assets/docs/modeles-cv.pdf">
+        <div class="media-thumb ebook"></div>
+        <div class="media-info">
+          <h3>Modèles de CV (PDF)</h3>
+          <p class="muted">Talent Sénégal • E-book • 12 pages</p>
+        </div>
+        <button class="btn btn-primary">Télécharger</button>
+      </li>
+      <li class="media-card" data-type="ebook" data-tags="carrière,orientation" data-author="ONG Talents" data-title="Guide d'orientation" data-file="assets/docs/guide-orientation.pdf">
+        <div class="media-thumb ebook"></div>
+        <div class="media-info">
+          <h3>Guide d'orientation</h3>
+          <p class="muted">ONG Talents • E-book • 28 pages</p>
+        </div>
+        <button class="btn btn-primary">Télécharger</button>
+      </li>
+    </ul>
+  </main>
+
+  <!-- Media Modal -->
+  <div id="mediaModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mediaTitle" style="display:none">
+    <div class="modal-card" style="max-width:900px">
+      <div class="modal-head">
+        <h3 id="mediaTitle">Lecture</h3>
+        <button class="modal-close" data-close aria-label="Fermer">
+          <svg class="icon"><use href="assets/img/icons.svg#icon-close"/></svg>
+        </button>
+      </div>
+      <div id="mediaContent" class="media-player" style="aspect-ratio:16/9; background:#000; border-radius:12px; overflow:hidden"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span id="year"></span> Talent Sénégal</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

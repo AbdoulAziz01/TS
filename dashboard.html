@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tableau de bord – Talent Sénégal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="Talent Sénégal" class="logo"/>
+        <span>Talent Sénégal</span>
+      </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="offers.html">Offres</a></li>
+          <li><a href="profile.html">Profil</a></li>
+          <li><a class="active" href="dashboard.html">Tableau de bord</a></li>
+          <li><a href="messages.html">Messages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard container">
+    <div class="section-head" style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin:16px 0 10px">
+      <div>
+        <h1 style="margin:0">Bonjour, <span id="dashName">Utilisateur</span></h1>
+        <p class="muted" style="margin:6px 0 0">Voici un aperçu rapide de votre activité.</p>
+      </div>
+      <div style="display:flex; gap:8px">
+        <a class="btn btn-ghost" href="profile.html">Compléter mon profil</a>
+        <a class="btn btn-primary" href="offers.html">Explorer les offres</a>
+      </div>
+    </div>
+
+    <section class="kpis">
+      <div class="kpi panel"><div class="lbl">Candidatures</div><div class="val" data-kpi="applications">0</div></div>
+      <div class="kpi panel"><div class="lbl">Entretiens</div><div class="val" data-kpi="interviews">0</div></div>
+      <div class="kpi panel"><div class="lbl">Sauvegardées</div><div class="val" data-kpi="saved">0</div></div>
+      <div class="kpi panel"><div class="lbl">Messages</div><div class="val" data-kpi="messages">0</div></div>
+    </section>
+
+    <section class="panel" data-roles="etudiant" style="display:none">
+      <h2>Rechercher un métier</h2>
+      <form id="jobSearchForm" class="dash-search" style="display:grid; grid-template-columns:1fr auto; gap:10px">
+        <input id="jobSearch" type="text" placeholder="Ex: Développeur, Data Analyst, Marketing..." />
+        <button class="btn btn-primary" type="submit">Chercher</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Informations de profil</h2>
+      <p class="muted">Renseignez vos informations pour personnaliser votre profil public.</p>
+      <form id="profileMetaForm" class="dash-profile" style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px">
+        <div class="field" style="grid-column:1 / -1">
+          <label for="pmCity">Ville</label>
+          <input id="pmCity" name="city" type="text" placeholder="Ex: Dakar" />
+        </div>
+        <div class="field" style="grid-column:1 / -1">
+          <label for="pmAvatar">Photo de profil</label>
+          <input id="pmAvatar" name="avatar" type="file" accept="image/*" />
+        </div>
+        <!-- Étudiant -->
+        <div class="field" data-roles="etudiant">
+          <label for="pmSchool">École</label>
+          <input id="pmSchool" name="school" type="text" placeholder="Ex: UCAD" />
+        </div>
+        <div class="field" data-roles="etudiant">
+          <label for="pmDiploma">Diplôme</label>
+          <input id="pmDiploma" name="diploma" type="text" placeholder="Ex: Licence Informatique" />
+        </div>
+        <!-- Entreprise -->
+        <div class="field" data-roles="entreprise">
+          <label for="pmCompany">Entreprise</label>
+          <input id="pmCompany" name="company" type="text" placeholder="Ex: TechCorp" />
+        </div>
+        <div class="field" data-roles="entreprise">
+          <label for="pmSector">Secteur</label>
+          <input id="pmSector" name="sector" type="text" placeholder="Ex: Technologie" />
+        </div>
+        <!-- Coach -->
+        <div class="field" data-roles="coach">
+          <label for="pmOrganization">Organisation</label>
+          <input id="pmOrganization" name="organization" type="text" placeholder="Ex: ONG Talents" />
+        </div>
+        <div class="field" data-roles="coach">
+          <label for="pmSpecialty">Spécialité</label>
+          <input id="pmSpecialty" name="specialty" type="text" placeholder="Ex: Coaching carrière" />
+        </div>
+        <!-- ONG -->
+        <div class="field" data-roles="ong">
+          <label for="pmOng">ONG</label>
+          <input id="pmOng" name="ongName" type="text" placeholder="Ex: Solidarité Santé" />
+        </div>
+        <div class="field" data-roles="ong">
+          <label for="pmDomain">Domaine</label>
+          <input id="pmDomain" name="domain" type="text" placeholder="Ex: Santé" />
+        </div>
+        <div style="grid-column:1 / -1; display:flex; justify-content:flex-end; gap:8px">
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="cvPanel" class="panel" style="display:none">
+      <h2>Mon CV</h2>
+      <p class="muted">Mettez votre CV en ligne pour faciliter vos candidatures.</p>
+      <p><strong class="cv-status">Aucun CV en ligne</strong> — <a class="cv-link" href="#" target="_blank" rel="noopener noreferrer"></a></p>
+      <form id="cvForm" class="dash-cv" style="display:grid; grid-template-columns:1fr 1fr auto; gap:10px; align-items:end">
+        <div class="field">
+          <label for="cvFile">Fichier (PDF)</label>
+          <input type="file" id="cvFile" accept="application/pdf" />
+        </div>
+        <div class="field">
+          <label for="cvUrl">Ou lien (Google Drive, etc.)</label>
+          <input type="url" id="cvUrl" placeholder="https://..." />
+        </div>
+        <button type="submit" class="btn btn-primary">Mettre en ligne</button>
+      </form>
+    </section>
+
+    <section id="postOfferPanel" class="panel" style="display:none">
+      <h2>Publier une offre</h2>
+      <p class="muted">Créez une opportunité en quelques champs.</p>
+      <form id="postOfferForm" class="dash-offer" style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+        <div class="field">
+          <label for="title">Titre</label>
+          <input id="title" name="title" type="text" placeholder="Ex: Développeur Front-end" required />
+        </div>
+        <div class="field">
+          <label for="company">Entreprise/ONG</label>
+          <input id="company" name="company" type="text" placeholder="Ex: TechCorp" required />
+        </div>
+        <div class="field">
+          <label for="location">Localisation</label>
+          <input id="location" name="location" type="text" placeholder="Ex: Dakar" />
+        </div>
+        <div class="field">
+          <label for="type">Type</label>
+          <select id="type" name="type">
+            <option>Stage</option>
+            <option>CDI</option>
+            <option>CDD</option>
+            <option>Mission</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="skill">Compétence clé</label>
+          <input id="skill" name="skill" type="text" placeholder="Ex: React" />
+        </div>
+        <div class="field">
+          <label for="sector">Secteur</label>
+          <select id="sector" name="sector">
+            <option>Technologie</option>
+            <option>Finance</option>
+            <option>ONG</option>
+            <option>Education</option>
+          </select>
+        </div>
+        <div class="field" style="grid-column:1 / -1">
+          <label for="description">Description</label>
+          <input id="description" name="description" type="text" placeholder="Brève description de l'offre" />
+        </div>
+        <div style="grid-column:1 / -1; display:flex; justify-content:flex-end">
+          <button class="btn btn-primary" type="submit">Publier</button>
+        </div>
+      </form>
+    </section>
+
+    <div class="dash-grid" style="display:grid; grid-template-columns:1.2fr .8fr; gap:16px">
+      <section class="panel" data-roles="etudiant">
+        <h2>Mes candidatures</h2>
+        <ul id="myApplicationsList" class="offer-list"></ul>
+      </section>
+      <section class="panel">
+        <h2>Offres recommandées</h2>
+        <ul class="offer-list">
+          <li class="offer-item">
+            <div>
+              <h3>Développeur Front-end (Stage)</h3>
+              <p>Start-up Tech – Dakar • React, JS</p>
+            </div>
+            <a href="offers.html" class="btn btn-primary">Voir</a>
+          </li>
+          <li class="offer-item">
+            <div>
+              <h3>Data Analyst Junior</h3>
+              <p>Banque – Dakar • SQL, Python</p>
+            </div>
+            <a href="offers.html" class="btn btn-primary">Voir</a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <section id="receivedAppsPanel" class="panel" data-roles="entreprise,coach,ong" style="display:none; margin-top:16px">
+      <h2>Candidatures reçues</h2>
+      <ul id="receivedAppsList" class="offer-list"></ul>
+    </section>
+
+    <section id="acceptedAppsPanel" class="panel" data-roles="entreprise,coach,ong" style="display:none; margin-top:16px">
+      <h2>Candidatures acceptées</h2>
+      <ul id="acceptedAppsList" class="offer-list"></ul>
+    </section>
+
+    <section id="refusedAppsPanel" class="panel" data-roles="entreprise,coach,ong" style="display:none; margin-top:16px">
+      <h2>Candidatures refusées</h2>
+      <ul id="refusedAppsList" class="offer-list"></ul>
+    </section>
+
+    <!-- Entity modal (applicant/company preview) -->
+    <div id="entityModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="entityTitle" style="display:none">
+      <div class="modal-card" style="max-width:720px">
+        <div class="modal-head">
+          <h3 id="entityTitle">Détails</h3>
+          <button class="modal-close" data-close aria-label="Fermer"><svg class="icon"><use href="assets/img/icons.svg#icon-close"/></svg></button>
+        </div>
+        <div id="entityBody" style="display:grid; gap:10px"></div>
+      </div>
+    </div>
+
+    <section class="panel" style="margin-top:16px">
+      <h2>Activité récente</h2>
+      <ul class="timeline" style="margin-top:4px">
+        <li>
+          <div class="time">Aujourd'hui</div>
+          <div class="desc"><h3>Candidature envoyée</h3><p>Développeur Front-end – Start-up Tech</p></div>
+        </li>
+        <li>
+          <div class="time">Hier</div>
+          <div class="desc"><h3>Message reçu</h3><p>HR – Finabank: “Pouvez-vous partager vos disponibilités ?”</p></div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span id="year"></span> Talent Sénégal</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

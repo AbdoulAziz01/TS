@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil – Talent Sénégal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="Talent Sénégal" class="logo"/>
+        <span>Talent Sénégal</span>
+      </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="offers.html">Offres</a></li>
+          <li><a class="active" href="profile.html">Profil</a></li>
+          <li><a href="dashboard.html">Tableau de bord</a></li>
+          <li><a href="messages.html">Messages</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Edit Profile Modal -->
+    <div id="profileEditModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="profileEditTitle" style="display:none">
+      <div class="modal-card" style="max-width:720px">
+        <div class="modal-head">
+          <h3 id="profileEditTitle">Éditer le profil</h3>
+          <button class="modal-close" data-close aria-label="Fermer">
+            <svg class="icon"><use href="assets/img/icons.svg#icon-close"/></svg>
+          </button>
+        </div>
+        <form id="profileEditForm" style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px">
+          <div class="field" style="grid-column:1 / -1">
+            <label for="peAvatar">Photo de profil / Logo</label>
+            <input id="peAvatar" name="avatar" type="file" accept="image/*" />
+          </div>
+          <div class="field" style="grid-column:1 / -1">
+            <label for="peCity">Ville</label>
+            <input id="peCity" name="city" type="text" placeholder="Ex: Dakar" />
+          </div>
+          <div class="field" data-roles="etudiant">
+            <label for="peSchool">École</label>
+            <input id="peSchool" name="school" type="text" placeholder="Ex: UCAD" />
+          </div>
+          <div class="field" data-roles="etudiant">
+            <label for="peDiploma">Diplôme</label>
+            <input id="peDiploma" name="diploma" type="text" placeholder="Ex: Licence Informatique" />
+          </div>
+          <div class="field" data-roles="etudiant" style="grid-column:1 / -1">
+            <label for="peFormations">Formations (une par ligne: Années | Titre – Établissement)</label>
+            <textarea id="peFormations" name="formations" rows="3" placeholder="2023 – Présent | Licence Informatique – UCAD"></textarea>
+          </div>
+          <div class="field" data-roles="etudiant" style="grid-column:1 / -1">
+            <label for="peSkills">Compétences (séparées par virgule)</label>
+            <input id="peSkills" name="skills" type="text" placeholder="React, SQL, Python" />
+          </div>
+          <div class="field" data-roles="etudiant" style="grid-column:1 / -1">
+            <label for="peCerts">Certifications (séparées par virgule)</label>
+            <input id="peCerts" name="certs" type="text" placeholder="AWS Cloud Practitioner, Google Data Analytics" />
+          </div>
+          <div class="field" data-roles="etudiant" style="grid-column:1 / -1">
+            <label for="pePortfolio">Portfolio / Site / LinkedIn (URL)</label>
+            <input id="pePortfolio" name="portfolio" type="url" placeholder="https://mon-portfolio.com" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peCompany">Entreprise</label>
+            <input id="peCompany" name="company" type="text" placeholder="Ex: TechCorp" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peSector">Secteur</label>
+            <input id="peSector" name="sector" type="text" placeholder="Ex: Technologie" />
+          </div>
+          <div class="field" data-roles="entreprise" style="grid-column:1 / -1">
+            <label for="peCompanyDesc">Description de l’entreprise</label>
+            <textarea id="peCompanyDesc" name="company_desc" rows="3" placeholder="Notre mission, nos produits..."></textarea>
+          </div>
+          <div class="field" data-roles="entreprise" style="grid-column:1 / -1">
+            <label for="peAddress">Adresse</label>
+            <input id="peAddress" name="address" type="text" placeholder="Ex: Immeuble Horizon, Plateau" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peContactName">Personne de contact</label>
+            <input id="peContactName" name="contact_name" type="text" placeholder="Nom et prénom" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peContactEmail">Email de contact</label>
+            <input id="peContactEmail" name="contact_email" type="email" placeholder="contact@exemple.sn" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peContactPhone">Téléphone</label>
+            <input id="peContactPhone" name="contact_phone" type="tel" placeholder="+221 77 000 00 00" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peWebsite">Site web</label>
+            <input id="peWebsite" name="website" type="url" placeholder="https://votre-site.sn" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peNinea">NINEA</label>
+            <input id="peNinea" name="ninea" type="text" placeholder="Numéro NINEA" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peRccm">RCCM</label>
+            <input id="peRccm" name="rccm" type="text" placeholder="Numéro RCCM" />
+          </div>
+          <div class="field" data-roles="entreprise">
+            <label for="peCompanySize">Taille de l’entreprise</label>
+            <input id="peCompanySize" name="company_size" type="text" placeholder="Petite / Moyenne / Grande" />
+          </div>
+          <div class="field" data-roles="coach">
+            <label for="peOrganization">Organisation</label>
+            <input id="peOrganization" name="organization" type="text" placeholder="Ex: ONG Talents" />
+          </div>
+          <div class="field" data-roles="coach">
+            <label for="peSpecialty">Spécialité</label>
+            <input id="peSpecialty" name="specialty" type="text" placeholder="Ex: Coaching carrière" />
+          </div>
+          <div class="field" data-roles="ong">
+            <label for="peOng">ONG</label>
+            <input id="peOng" name="ongName" type="text" placeholder="Ex: Solidarité Santé" />
+          </div>
+          <div class="field" data-roles="ong">
+            <label for="peDomain">Domaine</label>
+            <input id="peDomain" name="domain" type="text" placeholder="Ex: Santé" />
+          </div>
+          <div class="field" data-roles="ong" style="grid-column:1 / -1">
+            <label for="peOngDesc">Description de l’ONG</label>
+            <textarea id="peOngDesc" name="ong_desc" rows="3" placeholder="Notre mission, nos activités..."></textarea>
+          </div>
+          <div class="field" data-roles="ong" style="grid-column:1 / -1">
+            <label for="peAddressOng">Adresse</label>
+            <input id="peAddressOng" name="address" type="text" placeholder="Ex: Rue 12, Thiès" />
+          </div>
+          <div class="field" data-roles="ong">
+            <label for="peOngContactName">Personne de contact</label>
+            <input id="peOngContactName" name="contact_name" type="text" placeholder="Nom et prénom" />
+          </div>
+          <div class="field" data-roles="ong">
+            <label for="peOngContactEmail">Email de contact</label>
+            <input id="peOngContactEmail" name="contact_email" type="email" placeholder="contact@exemple.org" />
+          </div>
+          <div class="field" data-roles="ong">
+            <label for="peOngContactPhone">Téléphone</label>
+            <input id="peOngContactPhone" name="contact_phone" type="tel" placeholder="+221 76 000 00 00" />
+          </div>
+          <div class="field" data-roles="ong">
+            <label for="peOngWebsite">Site web</label>
+            <input id="peOngWebsite" name="website" type="url" placeholder="https://votre-site.org" />
+          </div>
+          <div style="grid-column:1 / -1; display:flex; justify-content:flex-end; gap:8px">
+            <button type="button" class="btn btn-ghost" data-close>Annuler</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <main class="profile-page container">
+    <!-- Coach profile header -->
+    <section class="profile-header" data-roles="coach">
+      <img class="avatar xl" src="https://i.pravatar.cc/160?img=12" alt="Avatar" />
+      <div>
+        <h1>Fatou Ndiaye</h1>
+        <p>Coach Carrière • Dakar</p>
+        <div class="tags">
+          <span class="tag">Coaching</span>
+          <span class="tag yellow">RH</span>
+          <span class="tag red">Mentorat</span>
+        </div>
+        <div style="margin-top:10px; display:flex; gap:8px">
+          <button id="editProfileBtn" class="btn btn-ghost">Éditer le profil</button>
+          <button id="contactBtn" class="btn btn-primary">Contacter</button>
+        </div>
+      </div>
+    </section>
+    <!-- Étudiant profile header -->
+    <section class="profile-header" data-roles="etudiant" style="display:none">
+      <img class="avatar xl" src="https://i.pravatar.cc/160?img=5" alt="Avatar" />
+      <div>
+        <h1>Aïda Diop</h1>
+        <p>Étudiante en Informatique • Dakar</p>
+        <div class="tags" id="studentSkills"></div>
+        <div style="margin-top:10px; display:flex; gap:8px">
+          <button id="editProfileBtn2" class="btn btn-ghost">Éditer le profil</button>
+        </div>
+      </div>
+    </section>
+    <!-- Entreprise profile header -->
+    <section class="profile-header" data-roles="entreprise" style="display:none">
+      <img class="avatar xl" src="assets/img/logo.svg" alt="Logo" />
+      <div>
+        <h1>TechCorp</h1>
+        <p>Entreprise • Technologie • Dakar</p>
+        <div class="tags">
+          <span class="tag">Innovation</span>
+          <span class="tag yellow">Recrutement</span>
+        </div>
+        <div style="margin-top:10px; display:flex; gap:8px">
+          <button id="editProfileBtn3" class="btn btn-ghost">Éditer le profil</button>
+        </div>
+      </div>
+    </section>
+    <!-- ONG profile header -->
+    <section class="profile-header" data-roles="ong" style="display:none">
+      <img class="avatar xl" src="assets/img/logo.svg" alt="Logo" />
+      <div>
+        <h1>Solidarité Santé</h1>
+        <p>ONG • Santé • Thiès</p>
+        <div class="tags">
+          <span class="tag">Mission</span>
+          <span class="tag red">Impact</span>
+        </div>
+        <div style="margin-top:10px; display:flex; gap:8px">
+          <button id="editProfileBtn4" class="btn btn-ghost">Éditer le profil</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="profile-grid">
+      <section class="panel" data-roles="coach">
+        <h2>Bio</h2>
+        <p>10 ans d'expérience en accompagnement de jeunes diplômés vers l'emploi, avec un focus sur les métiers du numérique et de l'impact social.</p>
+      </section>
+      <section class="panel" data-roles="coach">
+        <h2>Compétences</h2>
+        <ul class="chips">
+          <li>Communication</li>
+          <li>Gestion de projet</li>
+          <li>Design de carrière</li>
+          <li>Ateliers</li>
+        </ul>
+      </section>
+      <section class="panel" data-roles="coach">
+        <h2>Expériences</h2>
+        <ul class="timeline">
+          <li>
+            <div class="time">2019 – Présent</div>
+            <div class="desc">
+              <h3>Coach Carrière – ONG Talents</h3>
+              <p>Accompagnement de 200+ étudiants par an, mise en place de programmes d'ateliers.</p>
+            </div>
+          </li>
+          <li>
+            <div class="time">2016 – 2019</div>
+            <div class="desc">
+              <h3>Chargée RH – TechCorp</h3>
+              <p>Recrutements juniors, onboarding, marque employeur.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="panel" data-roles="coach">
+        <h2>Formations</h2>
+        <ul class="timeline">
+          <li>
+            <div class="time">2014 – 2016</div>
+            <div class="desc">
+              <h3>Master RH – Université Cheikh Anta Diop</h3>
+              <p>Spécialisation en développement des compétences.</p>
+            </div>
+          </li>
+          <li>
+            <div class="time">2011 – 2014</div>
+            <div class="desc">
+              <h3>Licence Psychologie – UCAD</h3>
+              <p>Parcours travail et organisations.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="panel" data-roles="coach">
+        <h2>Projets récents</h2>
+        <div class="project-grid">
+          <article class="project">
+            <h3>Programme Mentorat 2025</h3>
+            <p>Accompagnement de 50 étudiants sur 6 mois.</p>
+            <a class="btn btn-ghost" href="#">Voir plus</a>
+          </article>
+          <article class="project">
+            <h3>Ateliers CV & LinkedIn</h3>
+            <p>3 sessions, 200 participants.</p>
+            <a class="btn btn-ghost" href="#">Voir plus</a>
+          </article>
+          <article class="project">
+            <h3>Bootcamp Emploi</h3>
+            <p>Partenariat avec 5 entreprises locales.</p>
+            <a class="btn btn-ghost" href="#">Voir plus</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- Étudiant sections -->
+      <section class="panel" data-roles="etudiant" style="display:none">
+        <h2>À propos</h2>
+        <p>Étudiante motivée, passionnée par le développement web et l’analyse de données.</p>
+      </section>
+      <section class="panel" data-roles="etudiant" style="display:none">
+        <h2>Formations</h2>
+        <ul id="studentFormations" class="timeline">
+          <!-- hydraté par JS: items avec time, desc(h3,p) -->
+        </ul>
+      </section>
+      <section class="panel" data-roles="etudiant" style="display:none">
+        <h2>Mon CV</h2>
+        <p class="muted">Mettez votre CV via votre tableau de bord pour l’afficher ici.</p>
+        <div id="studentCvSlot"></div>
+      </section>
+      <section class="panel" data-roles="etudiant" style="display:none">
+        <h2>Certifications</h2>
+        <ul id="studentCerts" class="chips"></ul>
+      </section>
+      <section class="panel" data-roles="etudiant" style="display:none">
+        <h2>Portfolio & Liens</h2>
+        <ul id="studentPortfolio" class="offer-list"></ul>
+      </section>
+
+      <!-- Entreprise sections -->
+      <section class="panel" data-roles="entreprise" style="display:none">
+        <h2>À propos</h2>
+        <p id="entDesc">TechCorp est une entreprise innovante spécialisée dans les solutions SaaS pour l'éducation et l'emploi au Sénégal.</p>
+      </section>
+      <section class="panel" data-roles="entreprise,coach,ong" style="display:none">
+        <h2>Offres publiées</h2>
+        <ul id="profileOffersList" class="offer-list"></ul>
+      </section>
+      <section class="panel" data-roles="entreprise" style="display:none">
+        <h2>Coordonnées</h2>
+        <ul class="offer-list">
+          <li class="offer-item"><div><strong>Adresse</strong><p id="entAddress">Immeuble Horizon, Plateau, Dakar</p></div></li>
+          <li class="offer-item"><div><strong>Ville</strong><p id="entCity">Dakar</p></div></li>
+          <li class="offer-item"><div><strong>Contact</strong><p id="entContact">Mariatou Sarr – mariatou@techcorp.sn – +221 77 123 45 67</p></div></li>
+          <li class="offer-item"><div><strong>Site web</strong><p><a id="entWebsite" href="#" target="_blank">https://techcorp.sn</a></p></div></li>
+        </ul>
+      </section>
+      <section class="panel" data-roles="entreprise" style="display:none">
+        <h2>Informations légales</h2>
+        <ul class="offer-list">
+          <li class="offer-item"><div><strong>NINEA</strong><p id="entNinea">123456789X</p></div></li>
+          <li class="offer-item"><div><strong>RCCM</strong><p id="entRccm">SN-DKR-2025-B-00123</p></div></li>
+          <li class="offer-item"><div><strong>Taille</strong><p id="entSize">Moyenne (50–250)</p></div></li>
+        </ul>
+      </section>
+      <section class="panel" data-roles="entreprise" style="display:none">
+        <h2>Statistiques</h2>
+        <div class="stats-cards">
+          <div class="stat"><div class="value" id="entStatOffers">3</div><div class="label">Offres actives</div></div>
+          <div class="stat"><div class="value" id="entStatApps">12</div><div class="label">Candidatures reçues</div></div>
+          <div class="stat"><div class="value" id="entStatInterviews">4</div><div class="label">Entretiens planifiés</div></div>
+        </div>
+      </section>
+
+      <!-- Applicants modal -->
+      <div id="offerApplicantsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="offerApplicantsTitle" style="display:none">
+        <div class="modal-card" style="max-width:720px">
+          <div class="modal-head">
+            <h3 id="offerApplicantsTitle">Candidats</h3>
+            <button class="modal-close" data-close aria-label="Fermer"><svg class="icon"><use href="assets/img/icons.svg#icon-close"/></svg></button>
+          </div>
+          <ul id="offerApplicantsList" class="offer-list" style="margin-top:8px"></ul>
+        </div>
+      </div>
+
+      <!-- ONG sections -->
+      <section class="panel" data-roles="ong" style="display:none">
+        <h2>Notre mission</h2>
+        <p id="ongDesc">Améliorer l’accès à la santé via des programmes communautaires et la formation des jeunes.</p>
+      </section>
+      <section class="panel" data-roles="ong" style="display:none">
+        <h2>Coordonnées</h2>
+        <ul class="offer-list">
+          <li class="offer-item"><div><strong>Adresse</strong><p id="ongAddress">Rue 12, Thiès</p></div></li>
+          <li class="offer-item"><div><strong>Contact</strong><p id="ongContact">Cheikh Ndiaye – contact@solidaritesante.org – +221 76 987 65 43</p></div></li>
+          <li class="offer-item"><div><strong>Site web</strong><p><a id="ongWebsite" href="#" target="_blank">https://solidaritesante.org</a></p></div></li>
+        </ul>
+      </section>
+      <section class="panel" data-roles="ong" style="display:none">
+        <h2>Projets en cours</h2>
+        <ul class="chips" id="ongProjects">
+          <li>Campagne Vaccination</li>
+          <li>Ateliers Nutrition</li>
+        </ul>
+      </section>
+      <section class="panel" data-roles="ong" style="display:none">
+        <h2>Actualités & Événements</h2>
+        <ul class="offer-list" id="ongNews">
+          <li class="offer-item"><div><h3>Journée Santé Communautaire</h3><p>20 Nov 2025 – Ziguinchor</p></div></li>
+        </ul>
+      </section>
+      </section>
+    </div>
+    <div id="contactModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h3 id="contactTitle">Contacter Fatou</h3>
+          <button class="modal-close" data-close aria-label="Fermer">
+            <svg class="icon"><use href="assets/img/icons.svg#icon-close"/></svg>
+          </button>
+        </div>
+        <form>
+          <div class="field">
+            <label for="msg">Votre message</label>
+            <input id="msg" type="text" placeholder="Bonjour, j'aimerais échanger..." required />
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span id="year"></span> Talent Sénégal</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

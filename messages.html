@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messages – Talent Sénégal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo.svg" alt="Talent Sénégal" class="logo"/>
+        <span>Talent Sénégal</span>
+      </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="offers.html">Offres</a></li>
+          <li><a href="profile.html">Profil</a></li>
+          <li><a href="dashboard.html">Tableau de bord</a></li>
+          <li><a class="active" href="messages.html">Messages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container chat">
+    <div class="chat-grid">
+      <aside class="chat-sidebar panel">
+        <h2>Conversations</h2>
+        <ul id="threadList" class="threads">
+          <li class="thread active" data-id="t1">
+            <img src="https://i.pravatar.cc/40?img=14" alt=""/>
+            <div>
+              <strong>HR – TechCorp</strong>
+              <span>Bonjour, pouvez-vous...</span>
+            </div>
+          </li>
+          <li class="thread" data-id="t2">
+            <img src="https://i.pravatar.cc/40?img=9" alt=""/>
+            <div>
+              <strong>Coach Fatou</strong>
+              <span>Votre CV est bien...</span>
+            </div>
+          </li>
+          <li class="thread" data-id="t3">
+            <img src="https://i.pravatar.cc/40?img=3" alt=""/>
+            <div>
+              <strong>IA TalentBot</strong>
+              <span>Je peux vous aider...</span>
+            </div>
+          </li>
+        </ul>
+      </aside>
+
+      <section class="chat-panel panel">
+        <header class="chat-header">
+          <div class="peer">
+            <img src="https://i.pravatar.cc/40?img=3" alt=""/>
+            <div>
+              <strong id="chatTitle">IA TalentBot</strong>
+              <span class="muted">Réponses automatiques</span>
+            </div>
+          </div>
+        </header>
+        <div id="chatBody" class="chat-body">
+          <div class="bubble bot">Bonjour 👋 Je suis TalentBot. Posez-moi une question ou dites "recommande" pour voir des offres.</div>
+        </div>
+        <form id="chatForm" class="chat-input" autocomplete="off">
+          <input id="chatMessage" type="text" placeholder="Écrivez un message..." />
+          <button class="btn btn-primary" type="submit">Envoyer</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">© <span id="year"></span> Talent Sénégal</div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
